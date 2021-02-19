@@ -29,7 +29,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
             gateway: 'stripe',
             stripe: {
                 payment_method_id: paymentMethod.id,
-            },
+                },
             },
         };
 
