@@ -7,6 +7,9 @@ import { commerce } from '../../lib/commerce';
 import FormInput from './FormInput';
 
 const AddressForm = ({ checkoutToken, test }) => {
+
+    // set states
+
     const [shippingCountries, setShippingCountries] = useState([]);
     const [shippingCountry, setShippingCountry] = useState('');
     const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
@@ -15,6 +18,10 @@ const AddressForm = ({ checkoutToken, test }) => {
     const [shippingOption, setShippingOption] = useState('');
     const methods = useForm();
 
+    // async function to set countries object using localListShippingCountries by checkoutTokenId
+    // set countries as new state for shippingCountries value using setShippingCountries function
+    // set keys of countries object that are index 0 as new state for shippingCountry value using setShippingCountry function
+
     const fetchShippingCountries = async (checkoutTokenId) => {
         const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
 
@@ -22,12 +29,19 @@ const AddressForm = ({ checkoutToken, test }) => {
         setShippingCountry(Object.keys(countries)[0]);
     };
 
+    // async function to set subdivisions object using localeListSubdivisions by countryCode
+    // set subdivisions as new state for shippingSubdivisions value using setShippingSubdivisions function
+    // set keys of subdivisions object that are index 0 as new state for shippingSubdivision value using setShippingSubdivision function
+
     const fetchSubdivisions = async (countryCode) => {
         const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
 
         setShippingSubdivisions(subdivisions);
         setShippingSubdivision(Object.keys(subdivisions)[0]);
     };
+
+    // async function to set options using getShippingOptions by checkoutTOkenId and country, region: stateProvince
+    // set options as new state 
 
     const fetchShippingOptions = async (checkoutTokenId, country, stateProvince = null) => {
         const options = await commerce.checkout.getShippingOptions(checkoutTokenId, { country, region: stateProvince });

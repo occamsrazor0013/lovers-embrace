@@ -5,6 +5,8 @@ import logo from '../../assets/rose.png'
 import useStyles from './styles.js';
 import { Link, useLocation } from 'react-router-dom';
 
+// recieve props 
+
 const Navbar = ({ totalItems }) => {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     const classes = useStyles();
@@ -19,7 +21,9 @@ const Navbar = ({ totalItems }) => {
     const renderMobileMenu = (
         <Menu anchorEl={mobileMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} id={mobileMenuId} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={isMobileMenuOpen} onClose={handleMobileMenuClose}>
             <MenuItem>
+                {/* integrate within material ui components using react router  */}
                 <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+                    {/* display number of items using totalitems object */}
                     <Badge badgeContent={totalItems} color="secondary">
                         <ShoppingCart />
                     </Badge>
@@ -32,6 +36,7 @@ const Navbar = ({ totalItems }) => {
     return (
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
+
                 <Toolbar>
                     <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
                         <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Lover's Embrace

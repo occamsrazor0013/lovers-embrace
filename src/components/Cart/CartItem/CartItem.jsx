@@ -3,10 +3,16 @@ import { Typography, Button, Card, CardActions, CardContent, CardMedia } from '@
 
 import useStyles from './styles';
 
+// recieve props
+
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
     const classes = useStyles();
 
+    // new function for updating card quantity
+
     const handleUpdateCartQty = (lineItemId, newQuantity) => onUpdateCartQty(lineItemId, newQuantity);
+
+    // new function for removing from cart
 
     const handleRemoveFromCart = (lineItemId) => onRemoveFromCart(lineItemId);
 
@@ -19,10 +25,13 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
                 </CardContent>
             <CardActions className={classes.cardActions}>
             <div className={classes.buttons}>
+                {/* on click, call function created in conjunction with onUpdateCartQty */}
                 <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity - 1)}>-</Button>
                 <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
+                {/* on click, call function created in conjunction with onUpdateCartQty */}
                 <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity + 1)}>+</Button>
             </div>
+                {/* on click, call function created in conjunction with handleRemoveFromCart */}
                 <Button variant="contained" type="button" color="secondary" onClick={() => handleRemoveFromCart(item.id)}>Remove</Button>
             </CardActions>
         </Card>

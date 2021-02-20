@@ -5,9 +5,12 @@ import { loadStripe } from '@stripe/stripe-js';
 
 import Review from './Review';
 
+// start new stripe instance
+
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
+    // following stripe api
     const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
 
@@ -41,6 +44,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
 
     return (
         <>
+        {/* pass checkoutToken as prop to child component */}
         <Review checkoutToken={checkoutToken} />
         <Divider />
         <Typography variant="h6" gutterBottom style={{ margin: '20px 0' }}>Payment method</Typography>

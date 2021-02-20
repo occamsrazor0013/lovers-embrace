@@ -1,12 +1,13 @@
 import React from 'react'
 import { Typography, List, ListItem, ListItemText } from '@material-ui/core';
 
-
+// recieve props
 const Review = ({ checkoutToken }) => {
     return (
         <>
             <Typography variant="h6" gutterBottom>Order summary</Typography>
             <List disablePadding>
+                {/* map checkout items for each product */}
                 {checkoutToken.live.line_items.map((product) => (
                     <ListItem style={{ padding: '10px 0' }} key={product.name}>
                         <ListItemText primary={product.name} secondary={`Quantity: ${product.quantity}`} />
