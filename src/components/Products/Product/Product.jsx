@@ -10,7 +10,6 @@ const Product = ({ product, onAddToCart }) => {
     const classes = useStyles();
 
     // set new function to add to cart
-    
     const handleAddToCart = () => onAddToCart(product.id, 1);
 
     return (

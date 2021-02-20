@@ -36,14 +36,16 @@ const Navbar = ({ totalItems }) => {
     return (
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
-
                 <Toolbar>
+                    {/* material ui and react router specific syntax for button to route to home page */} 
                     <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
                         <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Lover's Embrace
                     </Typography>
                     <div className={classes.grow} />
+                    {/* if route has / */}
                     {location.pathname === '/' && (
                     <div className={classes.button}>
+                        {/* material ui and react router specific syntax for button to route to cart */} 
                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                             <Badge badgeContent={totalItems} color="secondary">
                                 <ShoppingCart />
