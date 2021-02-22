@@ -36,18 +36,18 @@ const AddressForm = ({ checkoutToken, test }) => {
     // set keys of subdivisions object that are index 0 as new state for shippingSubdivision value using setShippingSubdivision function
 
     const fetchSubdivisions = async (countryCode) => {
-        const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
 
+        const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
         setShippingSubdivisions(subdivisions);
         setShippingSubdivision(Object.keys(subdivisions)[0]);
     };
 
-    // async function to set options object using getShippingOptions by checkoutTOkenId and country, region: stateProvince
+    // async function to set options using getShippingOptions by checkoutTOkenId and country, region: stateProvince
     // set options as new state for shippingOptions value using setShippingOptions function
-    // set keys of options object that are index 0 as new state for shippingOption value using setShippingOption function
+    // set value of id of index 0 as new state for shippingOption value using setShippingOption function
 
     const fetchShippingOptions = async (checkoutTokenId, country, stateProvince = null) => {
-        const { options } = await commerce.checkout.getShippingOptions(checkoutTokenId, { country, region: stateProvince });
+        const options = await commerce.checkout.getShippingOptions(checkoutTokenId, { country, region: stateProvince });
 
         setShippingOptions(options);
         setShippingOption(options[0].id);
